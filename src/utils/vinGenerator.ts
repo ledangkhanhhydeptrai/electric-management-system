@@ -1,36 +1,48 @@
 import { Models } from "@/services/vehicleModel/vehicle";
 
 /**
- * Sinh VIN cho một modelId dựa trên dữ liệu model từ backend.
- * Nếu modelId không tồn tại, fallback dùng prefix "VF0".
- * 
- * @param modelId ID của model cần sinh VIN
- * @param models Danh sách model từ backend
- * @returns VIN đầy đủ 17 ký tự
+ * VIN:
+ * - đúng 17 ký tự
+ * - chỉ chứa A-Z và 0-9
+ * - không chứa I, O, Q
  */
-export function generateVinForModel(modelId: string, models: Models[]) {
-  // Ký tự hợp lệ cho phần random của VIN
+export function generateVinForModel(
+  modelId: string,
+  models: Models[]
+) {
+  // Bộ ký tự VIN hợp lệ
   const chars = "ABCDEFGHJKLMNPRSTUVWXYZ0123456789";
 
-  // Tìm model theo ID
-  const model = models.find(m => m.id === modelId);
+  // Tìm model
+  const model = models.find((m) => m.id === modelId);
 
-  // Nếu model không tồn tại, fallback prefix "VF0"
-  let prefix: string;
-  if (model) {
-    prefix = model.name.toUpperCase(); // chắc chắn model tồn tại
-  } else {
-    console.warn(`ModelId ${modelId} không tìm thấy, dùng VF0 làm prefix`);
-    prefix = "VF0";
-  }
+  // Lấy tên model hoặc fallback
+  const rawPrefix = model?.name || "VF0";
 
-  // Phần còn lại để đủ 17 ký tự
+  /**
+   * Chuẩn hóa:
+   * - uppercase
+   * - bỏ ký tự đặc biệt
+   * - bỏ khoảng trắng
+   * - bỏ I O Q
+   */
+  let prefix = rawPrefix
+    .toUpperCase()
+    .replace(/[^A-Z0-9]/g, "")
+    .replace(/[IOQ]/g, "");
+
+  // Không cho prefix vượt quá 10 ký tự
+  prefix = prefix.slice(0, 10);
+
+  // Tính phần random còn lại
   const remaining = 17 - prefix.length;
 
   let randomPart = "";
+
   for (let i = 0; i < remaining; i++) {
     randomPart += chars[Math.floor(Math.random() * chars.length)];
   }
 
-  return (prefix + randomPart).toUpperCase();
+  // VIN cuối cùng
+  return (prefix + randomPart).slice(0, 17);
 }

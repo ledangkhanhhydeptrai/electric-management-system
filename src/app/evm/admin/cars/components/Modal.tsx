@@ -226,17 +226,17 @@ export default function AddCarModal({
                       <select
                         required
                         value={modelId || ""}
-                        onChange={(e) => setModelId(e.target.value)}
+                        onChange={e => setModelId(e.target.value)}
                         className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all appearance-none"
                       >
                         <option value="" disabled>
                           -- Select Model --
                         </option>
-                        {vehiclemodel.map((model) => (
+                        {vehiclemodel.map(model =>
                           <option key={model.id} value={model.id}>
                             {model.name}
                           </option>
-                        ))}
+                        )}
                       </select>
                     </div>
                   </div>
@@ -260,7 +260,7 @@ export default function AddCarModal({
                         required
                         placeholder="ABC12345678901234" // ← Không bắt đầu bằng VF
                         value={vin}
-                        onChange={(e) => setVin(e.target.value.toUpperCase())} // ← Auto uppercase
+                        onChange={e => setVin(e.target.value.toUpperCase())} // ← Auto uppercase
                         maxLength={17} // ← Limit 17 chars
                         className="w-full pl-12 pr-32 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 hover:border-gray-300 transition-all duration-200 text-gray-900 placeholder:text-gray-400 bg-white shadow-sm uppercase" // ← Force uppercase display
                       />
@@ -326,7 +326,7 @@ export default function AddCarModal({
                         type="date"
                         required
                         value={mfgDate}
-                        onChange={(e) => setMfgDate(e.target.value)}
+                        onChange={e => setMfgDate(e.target.value)}
                         className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                       />
                     </div>
@@ -376,7 +376,7 @@ export default function AddCarModal({
                         step="0.1"
                         placeholder="87.7"
                         value={batteryKwh || ""}
-                        onChange={(e) => setBatteryKwh(+e.target.value)}
+                        onChange={e => setBatteryKwh(+e.target.value)}
                         className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                       />
                     </div>
@@ -396,7 +396,7 @@ export default function AddCarModal({
                         min="0"
                         placeholder="446"
                         value={rangeKm || ""}
-                        onChange={(e) => setRangeKm(+e.target.value)}
+                        onChange={e => setRangeKm(+e.target.value)}
                         className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                       />
                     </div>
@@ -416,7 +416,7 @@ export default function AddCarModal({
                         max="9"
                         placeholder="5"
                         value={seat || ""}
-                        onChange={(e) => setSeat(+e.target.value)}
+                        onChange={e => setSeat(+e.target.value)}
                         className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                       />
                     </div>
@@ -444,9 +444,8 @@ export default function AddCarModal({
                         min="0"
                         placeholder="36"
                         value={baseWarrantyMonths || ""}
-                        onChange={(e) =>
-                          setBaseWarrantyMonths(Number(e.target.value))
-                        }
+                        onChange={e =>
+                          setBaseWarrantyMonths(Number(e.target.value))}
                         className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                       />
                     </div>
@@ -462,7 +461,7 @@ export default function AddCarModal({
                       onChange={handleFileChange}
                       className="w-full px-4 py-2 bg-white border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-purple-100 focus:border-purple-400 transition-all outline-none hover:border-gray-300"
                     />
-                    {imageFile && (
+                    {imageFile &&
                       <div className="mt-3">
                         <p className="text-sm text-gray-600 mb-1">Xem trước:</p>
                         <div className="w-32 h-32 relative rounded-xl overflow-hidden border border-gray-300 shadow-sm">
@@ -474,8 +473,7 @@ export default function AddCarModal({
                             height={300}
                           />
                         </div>
-                      </div>
-                    )}
+                      </div>}
                   </div>
                   {/* Color */}
                   <div>
@@ -487,7 +485,7 @@ export default function AddCarModal({
                       <select
                         required
                         value={color}
-                        onChange={(e) => setColor(e.target.value)}
+                        onChange={e => setColor(e.target.value)}
                         className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all appearance-none bg-white"
                       >
                         <option value="--">Chọn màu</option>
@@ -511,7 +509,7 @@ export default function AddCarModal({
                       <select
                         required
                         value={version}
-                        onChange={(e) => setVersion(e.target.value)}
+                        onChange={e => setVersion(e.target.value)}
                         className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all appearance-none bg-white"
                       >
                         <option value="--">Chọn phiên bản</option>

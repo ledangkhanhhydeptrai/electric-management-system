@@ -36,7 +36,7 @@ export const createVehicle = async (formData: FormData) => {
         Authorization: `Bearer ${token}`
         // ❗ Không đặt Content-Type
       },
-      body: formData,
+      body: formData
     });
 
     if (!response.ok) {
@@ -50,7 +50,6 @@ export const createVehicle = async (formData: FormData) => {
     throw error;
   }
 };
-
 
 export const getVehicleById = async (id: string) => {
   try {
