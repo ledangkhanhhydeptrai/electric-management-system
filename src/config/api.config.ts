@@ -4,7 +4,7 @@ const API = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   timeout: 15000
 });
-
+console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
 API.interceptors.request.use(
   (config) => {
     const token =

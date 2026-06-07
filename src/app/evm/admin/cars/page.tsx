@@ -155,7 +155,9 @@ export default function EVManagementSystem() {
           message: "Tạo xe thành công",
           severity: "success"
         });
-        window.location.reload();
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
       } else {
         setNotification({
           open: true,
